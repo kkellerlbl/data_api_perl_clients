@@ -8,28 +8,32 @@ use Data::Dumper;
 use Time::HiRes qw( time );
 
 # Local
-#use sequence::assembly::ClientAPI;
-use DOEKBase::DataAPI::sequence::assembly::ClientAPI;
+use DOEKBase::DataAPI::taxonomy::taxon::ClientAPI;
 
 sub test_client {
     my ($url,$token,$ref) = @_;
-    warn "Using URL $url and reference $ref";
-    my $api = DOEKBase::DataAPI::sequence::assembly::ClientAPI->new({url=>$url,token=>$token,ref=>$ref});
+    my $api = DOEKBase::DataAPI::taxonomy::taxon::ClientAPI->new({url=>$url,token=>$token,ref=>$ref});
 
+    warn "Using URL $url and reference $ref";
     warn "Getting data..";
 
     my @functions = qw(
-get_assembly_id
+get_info
+get_history
+get_provenance
+get_id
+get_name
+get_version
+get_genetic_code
+get_aliases
+get_domain
+get_kingdom
+get_taxonomic_id
+get_scientific_lineage
+get_scientific_name
 get_genome_annotations
-get_external_source_info
-get_stats
-get_number_contigs
-get_gc_content
-get_dna_size
-get_contig_ids
-get_contig_lengths
-get_contig_gc_content
-get_contigs
+get_parent
+get_children
 );
 
     foreach my $function (@functions)
@@ -43,10 +47,10 @@ get_contigs
 
 }
 
-#my $url='https://ci.kbase.us/services/data/assembly';
-my $url='http://localhost:9102';
+#my $url='https://ci.kbase.us/services/data/taxon';
+my $url='http://localhost:9101';
 my $token=$ENV{'KB_AUTH_TOKEN'};
-my $ref='ReferenceGenomeAnnotations/kb|g.166819_assembly';
+my $ref='ReferenceTaxons/242159_taxon';
 
 GetOptions (
     'url=s' => \$url,
@@ -55,4 +59,3 @@ GetOptions (
 );
 
 test_client($url,$token,$ref);
-

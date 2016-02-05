@@ -1,6 +1,6 @@
-# Data API for Assembly entities.  This API provides methods for retrieving
-# summary information such as GC content, total length, external source information
-# as well as methods for retrieving individual contig sequences and gathering contig lengths and contig GC.
+# Data API for Taxon entities.  This API provides methods for traversing
+# taxonomic parent/child relationships, and accessing information such as
+# NCBI taxonomic id, scientific name, scientific lineage, etc.
 
 require 5.6.0;
 use strict;
@@ -11,10 +11,10 @@ use Thrift::BinaryProtocol;
 use Thrift::HttpClient;
 use Thrift::BufferedTransport;
 
-use DOEKBase::DataAPI::sequence::assembly::thrift_service;
-use DOEKBase::DataAPI::sequence::assembly::Types;
+use DOEKBase::DataAPI::taxonomy::taxon::thrift_service;
+use DOEKBase::DataAPI::taxonomy::taxon::Types;
 
-package DOEKBase::DataAPI::sequence::assembly::ClientAPI;
+package DOEKBase::DataAPI::taxonomy::taxon::ClientAPI;
 use Try::Tiny;
 use Carp;
 
@@ -32,7 +32,7 @@ sub new {
   # the default timeout is too short
   $transport->setSendTimeout(30000);
   my $protocol  = new Thrift::BinaryProtocol($transport);
-  my $client    = new DOEKBase::DataAPI::sequence::assembly::thrift_serviceClient($protocol);
+  my $client    = new DOEKBase::DataAPI::taxonomy::taxon::thrift_serviceClient($protocol);
 
   $transport->open();
 
@@ -44,19 +44,23 @@ sub new {
   
 }
 
-# cheat: use function generator
 my @functions = qw(
-get_assembly_id
+get_info
+get_history
+get_provenance
+get_id
+get_name
+get_version
+get_genetic_code
+get_aliases
+get_domain
+get_kingdom
+get_taxonomic_id
+get_scientific_lineage
+get_scientific_name
 get_genome_annotations
-get_external_source_info
-get_stats
-get_number_contigs
-get_gc_content
-get_dna_size
-get_contig_ids
-get_contig_lengths
-get_contig_gc_content
-get_contigs
+get_parent
+get_children
 );
 
 foreach my $function (@functions)
@@ -77,5 +81,8 @@ foreach my $function (@functions)
     return $result;
   };
 }
+
+
+
 
 1;

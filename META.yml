@@ -1,0 +1,22 @@
+---
+abstract: 'DOE KBase Data API Perl clients'
+author:
+  - 'KBase <help@kbase.us>'
+build_requires:
+  Module::Build: 0.3601
+  Test::More: 0
+configure_requires:
+  Module::Build: 0.3601
+dynamic_config: 1
+generated_by: 'Module::Build version 0.4003, CPAN::Meta::Converter version 2.133380'
+license: mit
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: DOEKBaseDataAPI
+requires:
+  Thrift: 0
+  Try::Tiny: 0
+resources:
+  license: http://opensource.org/licenses/mit-license.php
+version: v0.0.1

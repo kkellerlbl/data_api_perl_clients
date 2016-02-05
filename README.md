@@ -10,8 +10,6 @@ This repository is configured to use TravisCI
 
 Source code is under lib/ (Python)
 
-Develop branch status for data_api_perl_clients: coming soon
-
 Master branch status for data_api core
 [![Build Status](https://travis-ci.org/kbase/data_api.svg?branch=master)](https://travis-ci.org/kbase/data_api)
 [![Coverage Status](http://codecov.io/github/kbase/data_api/coverage.svg?branch=master)](http://codecov.io/github/kbase/data_api?branch=master)
@@ -58,4 +56,5 @@ Record changes in a human-readable format in the `CHANGELOG` at the root level. 
     * Fixed for any bug fixes.
     * Security to invite users to upgrade in case of vulnerabilities.
 - Changes not yet released should be put in the "Unreleased" section at the top. This serves as a sort of preview of upcoming changes.
+
 

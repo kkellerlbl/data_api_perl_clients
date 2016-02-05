@@ -13,7 +13,7 @@ use DOEKBase::DataAPI::sequence::assembly::ClientAPI;
 
 sub test_client {
     my ($url,$token,$ref) = @_;
-    warn "Using URL $url and reference $ref";
+#    my $api = sequence::assembly::ClientAPI->new({url=>$url,token=>$token,ref=>$ref});
     my $api = DOEKBase::DataAPI::sequence::assembly::ClientAPI->new({url=>$url,token=>$token,ref=>$ref});
 
     warn "Getting data..";
@@ -43,16 +43,16 @@ get_contigs
 
 }
 
-#my $url='https://ci.kbase.us/services/data/assembly';
 my $url='http://localhost:9102';
 my $token=$ENV{'KB_AUTH_TOKEN'};
-my $ref='ReferenceGenomeAnnotations/kb|g.166819_assembly';
+my $ref='PrototypeReferenceGenomes/kb|g.166819_assembly';
 
-GetOptions (
-    'url=s' => \$url,
-    'token=s' => \$token,
-    'ref=s' => \$ref,
-);
+#ap = argparse.ArgumentParser()
+#ap.add_argument('--ref', default='PrototypeReferenceGenomes/kb|g.166819_assembly', help='Object reference ID, e.g. 1019/4/1')
+#ap.add_argument('--url', dest='url', default='http://localhost:9102',
+#                metavar='URL', help='Remote server url '
+#                                     '(default=%(default)s)')
+#args = ap.parse_args()
 
 test_client($url,$token,$ref);
 
